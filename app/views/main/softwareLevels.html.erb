@@ -1,0 +1,45 @@
+<%= render 'layouts/navbar_software' %>
+<div class="row">
+  <%= render 'errors' %>
+</div>
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+  <h3 class="text-primary"><%= image_tag("server_logo.png", width: '35', height: '35', alt: 'S3 Login', class: "") %> Object Explorer Server <small> - Software Levels</small></h3>
+    <div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+  <tr>
+    <th>Software</th>
+    <th>Currently Running</th>
+    <th>Built On</th>
+    <th>Software Usage</th>
+  </tr>
+  <tr>
+    <td>Ruby</td>
+    <td><%= @ruby_version %></td>
+    <td>2.2.5p319</td>
+    <td>A dynamic, reflective, object-oriented, general-purpose programming language.</td>
+  </tr>
+  <tr>
+    <td>Rails</td>
+    <td><%= @rails_version %></td>
+    <td>5.0.0.1</td>
+    <td>A web application framework written in Ruby. Provides structures for database, web service, and web pages.</td>
+  </tr>
+  <tr>
+    <td>Bootstrap</td>
+    <td><%= @bootstrap_version %></td>
+    <td>3.3.7</td>
+    <td>A open-source collection of tools for creating websites and web applications.</td>
+  </tr>
+  <tr>
+    <td>OS Type</td>
+    <td><%= @os_type %></td>
+    <td>i386-mingw32 (Windows)</td>
+    <td>Should work on Windows, Linux, MacOS, x86, x64, ARM.</td>
+  </tr>
+</table>
+</div>
+
+  </div>
+</div>
