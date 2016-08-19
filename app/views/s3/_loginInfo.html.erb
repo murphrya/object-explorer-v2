@@ -1,0 +1,15 @@
+<div class="col-md-10 col-md-offset-1" id="loginInfo">
+  <h3 class="text-primary"><%= image_tag("s3_logo.png", width: '35', height: '35', alt: 'S3 Login', class: "") %> Amazon S3 Object Storage <small>Client</small></h3>
+  <table class="table table-striped table-condensed table-bordered table-hover">
+    <tr>
+      <th>Endpoint</th>
+      <th>Username</th>
+      <th>Status</th>
+    </tr>
+    <tr>
+      <td><%= @currentS3address %></td>
+      <td><%= @currentS3username %></td>
+      <td><%= @currentS3connection %></td>
+    </tr>
+  </table>
+</div>
