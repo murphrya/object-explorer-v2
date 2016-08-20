@@ -78,16 +78,18 @@ class MainController < ApplicationController
     end
   end
 
-
+  #displays the current running server configuration
   def softwareLevels
     begin
       @ruby_version = RUBY_VERSION
       @rails_version = Gem.latest_spec_for('rails').version.to_s
       @os_type = RUBY_PLATFORM
+      @server_instance = Socket.gethostname
+      @server_address = Socket.ip_address_list.find { |ai| ai.ipv4? && !ai.ipv4_loopback? }.ip_address
       @bootstrap_version = Gem.latest_spec_for('bootstrap-sass').version.to_s
+      @aws_version = Gem.latest_spec_for('aws-sdk-v1').version.to_s
       #@fog_version = Gem.latest_spec_for('fog').version.to_s
       #@fog_aliyn_version = Gem.latest_spec_for('fog-aliyun').version.to_s
-      #@aws_version = Gem.latest_spec_for('aws-s3').version.to_s
     rescue Exception => error
 
     end

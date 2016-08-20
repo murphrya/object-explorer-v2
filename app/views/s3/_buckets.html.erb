@@ -5,28 +5,18 @@
       <th></th>
       <th>Name</th>
       <th>Objects</th>
-      <th>Size</th>
+      <th>Size(MB)</th>
     </tr>
-    <tr>
-      <td>X</td>
-      <td>bucket-f877ds687436fd435443fsdfs4s</td>
-      <td>4,000</td>
-      <td>1000000 MB</td>
-    </tr>
-    <tr>
-      <td>X</td>
-      <td>bucket-f877ds687436fd435443fsdfs4s</td>
-      <td>4,000</td>
-      <td>1000 MB</td>
-    </tr>
-    <tr>
-      <td>X</td>
-      <td>bucket-f877ds687436fd435443fsdfs4s</td>
-      <td>4,000</td>
-      <td>1000 MB</td>
-    </tr>
+    <% @buckets_array.each do |buckets_hash| %>
+      <tr>
+        <td>O</td>
+        <td><%= buckets_hash[:name] %></td>
+        <td><%= buckets_hash[:objects] %></td>
+        <td><%= buckets_hash[:size] %></td>
+      </tr>
+    <% end %>
   </table>
-  <button type="button" class="btn btn-default btn-sm">Refresh</button>
+  <%= link_to 'Refresh', { :controller => "s3", :action => "testS3Connection"}, :class=>'btn btn-default btn-sm', :remote => true %>
   <button type="button" class="btn btn-primary btn-sm">Create New</button>
   <button type="button" class="btn btn-danger btn-sm">Delete</button>
 </div>

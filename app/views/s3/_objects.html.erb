@@ -26,7 +26,7 @@
       <td>text</td>
     </tr>
     </table>
-    <button type="button" class="btn btn-default btn-sm">Refresh</button>
+    <%= link_to 'Refresh', { :controller => "s3", :action => "testS3Connection"}, :class=>'btn btn-default btn-sm', :remote => true %>
     <button type="button" class="btn btn-primary btn-sm">Upload</button>
     <button type="button" class="btn btn-primary btn-sm">Download</button>
     <button type="button" class="btn btn-danger btn-sm">Delete</button>
