@@ -1,5 +1,5 @@
 <div id="objects" class="col-md-6 ">
-  <h4 class="text-primary"><span class="glyphicon glyphicon-file"></span> Objects</h4>
+  <h4 class="text-primary"><span class="glyphicon glyphicon-file"></span> Objects <small> - <%=session[:s3bucket]%></small></h4>
   <table class="table table-striped table-condensed table-bordered table-hover">
     <tr>
       <th></th>
@@ -7,24 +7,14 @@
       <th>Size</th>
       <th>Type</th>
     </tr>
-    <tr>
-      <td>X</td>
-      <td>obj-f877ds687436fd435443fsdfs4s</td>
-      <td>4,000</td>
-      <td>text</td>
-    </tr>
-    <tr>
-      <td>X</td>
-      <td>obj-f877ds687436fd435443fsdfs4s</td>
-      <td>4,000</td>
-      <td>text</td>
-    </tr>
-    <tr>
-      <td>X</td>
-      <td>obj-f877ds687436fd435443fsdfs4s</td>
-      <td>4,000</td>
-      <td>text</td>
-    </tr>
+    <% @objects_array.each do |objects_hash| %>
+      <tr>
+        <td>O</td>
+        <td><%= objects_hash[:name] %></td>
+        <td><%= objects_hash[:size] %></td>
+        <td><%= objects_hash[:type] %></td>
+      </tr>
+    <% end %>
     </table>
     <%= link_to 'Refresh', { :controller => "s3", :action => "testS3Connection"}, :class=>'btn btn-default btn-sm', :remote => true %>
     <button type="button" class="btn btn-primary btn-sm">Upload</button>

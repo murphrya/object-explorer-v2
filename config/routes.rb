@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   get 's3/index'
   get 's3/testS3Connection'
   post 's3/testS3Connection'
+  get 's3/viewBucketObjects'
+  post 's3/viewBucketObjects'
 
   #swift page routes
   get 'swift/index'

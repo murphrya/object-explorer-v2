@@ -8,6 +8,7 @@ class MainController < ApplicationController
       session[:s3username] = "Not Set" if session[:s3username] == nil
       session[:s3password] = "Not Set" if session[:s3password] == nil
       session[:s3connection] = "Disconnected" if session[:s3connection] == nil
+      session[:s3bucket] = "No Bucket Selected" if session[:s3bucket] == nil
 
       #pull the s3 object storage credentials for the html table
       @currentS3address = session[:s3address]
@@ -18,6 +19,8 @@ class MainController < ApplicationController
       session[:s3address] = "Not Set" if session[:s3address] == nil
       session[:s3username] = "Not Set" if session[:s3username] == nil
       session[:s3password] = "Not Set" if session[:s3password] == nil
+      session[:s3connection] = "Disconnected" if session[:s3connection] == nil
+      session[:s3bucket] = "No Bucket Selected" if session[:s3bucket] == nil
 
       #pull the s3 object storage credentials for the html table
       @currentS3address = session[:s3address]
@@ -35,6 +38,7 @@ class MainController < ApplicationController
       session[:s3address] = params[:selection][:s3address]
       session[:s3username] = params[:selection][:s3username]
       session[:s3password] = params[:selection][:s3password]
+      session[:s3bucket] = "No Bucket Selected"
 
       #pull the s3 object storage credentials for the html table
       @currentS3address = session[:s3address]
@@ -61,6 +65,7 @@ class MainController < ApplicationController
       session[:s3username] = "Not Set (User Wiped)"
       session[:s3password] = "Not Set (User Wiped)"
       session[:s3connection] = "Disconnected (User Wiped)"
+      session[:s3bucket] == "No Bucket Selected"
 
       #pull the s3 object storage credentials for the html table
       @currentS3address = session[:s3address]
@@ -73,6 +78,7 @@ class MainController < ApplicationController
       @currentS3address = session[:s3address]
       @currentS3username = session[:s3username]
       @currentS3password = session[:s3password]
+      session[:s3bucket] == "No Bucket Selected"
 
       flash.now[:danger] =  "Error Wiping S3 Credentials: #{error}."
     end

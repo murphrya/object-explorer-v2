@@ -7,16 +7,20 @@
       <th>Objects</th>
       <th>Size(MB)</th>
     </tr>
+    <%= form_for :selection, :url => {:controller => "s3", :action => "viewBucketObjects"}, :remote => true  do |f| %>
     <% @buckets_array.each do |buckets_hash| %>
       <tr>
-        <td>O</td>
+        <td><%= f.radio_button :bucket,  buckets_hash[:name], required:true %></td>
         <td><%= buckets_hash[:name] %></td>
         <td><%= buckets_hash[:objects] %></td>
         <td><%= buckets_hash[:size] %></td>
       </tr>
     <% end %>
   </table>
+  <%= f.submit 'View Objects', :class => 'btn btn-primary btn-sm' %>
+  <% end %>
   <%= link_to 'Refresh', { :controller => "s3", :action => "testS3Connection"}, :class=>'btn btn-default btn-sm', :remote => true %>
+
   <button type="button" class="btn btn-primary btn-sm">Create New</button>
   <button type="button" class="btn btn-danger btn-sm">Delete</button>
 </div>

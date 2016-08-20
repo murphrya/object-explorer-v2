@@ -14,11 +14,17 @@ class S3Controller < ApplicationController
       #Return an empty list of buckets if a connection cant be established
       @buckets_array = createEmptyBucketsArray if session[:s3connection] != "Established"
       @buckets_array = getBucketsList if session[:s3connection] == "Established"
+
+      #Get the list of objects for the selected bucket.
+      #Returns an empty list of objects if the selected bucket value is None
+      @objects_array = createEmptyObjectsArray if session[:s3bucket] == "No Bucket Selected"
+      @objects_array = getObjectsList if session[:s3bucket] != "No Bucket Selected"
     rescue Exception => error
       @currentS3connection = session[:s3connection]
       @currentS3address = session[:s3address]
       @currentS3username = session[:s3username]
       @buckets_array = createEmptyBucketsArray if session[:s3connection] != "Established"
+      @objects_array = createEmptyObjectsArray if session[:s3bucket] == "No Bucket Selected"
       flash.now[:danger] =  "Error Loading Application: #{error}."
     end
   end
@@ -39,6 +45,11 @@ class S3Controller < ApplicationController
       #Return an empty list of buckets if a connection cant be established
       @buckets_array = createEmptyBucketsArray if session[:s3connection] != "Established"
       @buckets_array = getBucketsList if session[:s3connection] == "Established"
+
+      #Get the list of objects for the selected bucket.
+      #Returns an empty list of objects if the selected bucket value is None
+      @objects_array = createEmptyObjectsArray if session[:s3bucket] == "No Bucket Selected"
+      @objects_array = getObjectsList if session[:s3bucket] != "No Bucket Selected"
       flash.now[:success] = "Success: Enpoint connection refreshed."
     rescue Exception => error
       session[:s3connection] = "Disconnected (Error)"
@@ -46,6 +57,7 @@ class S3Controller < ApplicationController
       @currentS3address = session[:s3address]
       @currentS3username = session[:s3username]
       @buckets_array = createEmptyBucketsArray if session[:s3connection] != "Established"
+      @objects_array = createEmptyObjectsArray if session[:s3bucket] == "No Bucket Selected"
       flash.now[:danger] =  "Error Loading Application: #{error}."
     end
   end
@@ -88,8 +100,17 @@ class S3Controller < ApplicationController
       return [{:name => '', :objects => '', :size => ''}]
       flash.now[:danger] =  "Error Creating S3 Buckets List: #{error}."
     end
+  end
 
-
+  #Helper method
+  #Returns an empty objects array that contains a hash with empty keys
+  def createEmptyObjectsArray
+    begin
+      return [{:name => '', :size => '', :type => ''}]
+    rescue Exception => error
+      return [{:name => '', :size => '', :type => ''}]
+      flash.now[:danger] =  "Error Creating S3 Buckets List: #{error}."
+    end
   end
 
   #Helper method
@@ -108,4 +129,65 @@ class S3Controller < ApplicationController
       flash.now[:danger] =  "Error Creating S3 Buckets List: #{error}."
     end
   end
+
+
+ def viewBucketObjects
+   begin
+     session[:s3bucket] = params["selection"]["bucket"]
+     puts session[:s3bucket].to_s
+     @currentS3connection = session[:s3connection]
+     @currentS3address = session[:s3address]
+     @currentS3username = session[:s3username]
+
+     #Get the list of buckets if a connection can be Established
+     #Return an empty list of buckets if a connection cant be established
+     @buckets_array = createEmptyBucketsArray if session[:s3connection] != "Established"
+     @buckets_array = getBucketsList if session[:s3connection] == "Established"
+
+     #Get the list of objects for the selected bucket.
+     #Returns an empty list of objects if the selected bucket value is None
+     @objects_array = createEmptyObjectsArray if session[:s3bucket] == "No Bucket Selected"
+     @objects_array = getObjectsList if session[:s3bucket] != "No Bucket Selected"
+   rescue Exception => error
+     @currentS3connection = session[:s3connection]
+     @currentS3address = session[:s3address]
+     @currentS3username = session[:s3username]
+     @buckets_array = createEmptyBucketsArray if session[:s3connection] != "Established"
+     @objects_array = createEmptyObjectsArray if session[:s3bucket] == "No Bucket Selected"
+     flash.now[:danger] =  "Error Loading Application: #{error}."
+   end
+ end
+
+
+ def getObjectsList
+   begin
+     s3 = createS3Connection
+     bucket = s3.buckets[session[:s3bucket]]
+
+     objects_array = []
+     final_objects_array = []
+     bucket.objects.each do |obj|
+       objects_array.push(objects_array.push(obj.key))
+     end
+
+     if !objects_array.empty?
+       objects_array.each do |obj_name|
+         final_objects_array.push({:name => obj_name, :size => '', :type => ''})
+       end
+     else
+        final_objects_array = [{:name => '', :size => '', :type => ''}]
+     end
+     return final_objects_array
+   rescue Exception => error
+     return createEmptyObjectsArray
+     flash.now[:danger] =  "Error Creating S3 Buckets List: #{error}."
+   end
+ end
+
+
+
+
+
+
+
 end
