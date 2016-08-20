@@ -7,6 +7,7 @@ class MainController < ApplicationController
       session[:s3address] = "Not Set" if session[:s3address] == nil
       session[:s3username] = "Not Set" if session[:s3username] == nil
       session[:s3password] = "Not Set" if session[:s3password] == nil
+      session[:s3connection] = "Disconnected" if session[:s3connection] == nil
 
       #pull the s3 object storage credentials for the html table
       @currentS3address = session[:s3address]
@@ -59,6 +60,7 @@ class MainController < ApplicationController
       session[:s3address] = "Not Set (User Wiped)"
       session[:s3username] = "Not Set (User Wiped)"
       session[:s3password] = "Not Set (User Wiped)"
+      session[:s3connection] = "Disconnected (User Wiped)"
 
       #pull the s3 object storage credentials for the html table
       @currentS3address = session[:s3address]

@@ -15,9 +15,11 @@ Rails.application.routes.draw do
 
   #s3 page routes
   get 's3/index'
+  get 's3/testS3Connection'
+  post 's3/testS3Connection'
 
   #swift page routes
-    get 'swift/index'
+  get 'swift/index'
 
 
 

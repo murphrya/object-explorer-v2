@@ -4,7 +4,7 @@
     <tr>
       <th>Endpoint</th>
       <th>Username</th>
-      <th>Status</th>
+      <th>Connection Status</th>
     </tr>
     <tr>
       <td><%= @currentS3address %></td>
@@ -12,4 +12,5 @@
       <td><%= @currentS3connection %></td>
     </tr>
   </table>
+  <%= link_to 'Test Connection', { :controller => "s3", :action => "testS3Connection"}, :class=>'btn btn-primary', :remote => true %>
 </div>
