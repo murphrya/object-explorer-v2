@@ -82,7 +82,7 @@ class S3Controller < ApplicationController
       s3 = AWS::S3.new(:access_key_id => session[:s3username],
                        :secret_access_key => session[:s3password],
                        :s3_endpoint => session[:s3address],
-                       :use_ssl => true
+                       :use_ssl => session[:use_ssl]
                       )
       return s3
     rescue Exception => error

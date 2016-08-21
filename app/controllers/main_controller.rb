@@ -7,25 +7,29 @@ class MainController < ApplicationController
       session[:s3address] = "Not Set" if session[:s3address] == nil
       session[:s3username] = "Not Set" if session[:s3username] == nil
       session[:s3password] = "Not Set" if session[:s3password] == nil
+      session[:use_ssl] = "true" if session[:use_ssl] == nil
       session[:s3connection] = "Disconnected" if session[:s3connection] == nil
-      session[:s3bucket] = "No Bucket Selected" if session[:s3bucket] == nil
+      session[:s3bucket] = "No Bucket Selected"
+
 
       #pull the s3 object storage credentials for the html table
       @currentS3address = session[:s3address]
       @currentS3username = session[:s3username]
       @currentS3password = session[:s3password]
+      @ssl_setting = session[:use_ssl]
     rescue Exception => error
       #set the s3 credentials to Not Set if an error is encountered
       session[:s3address] = "Not Set" if session[:s3address] == nil
       session[:s3username] = "Not Set" if session[:s3username] == nil
       session[:s3password] = "Not Set" if session[:s3password] == nil
       session[:s3connection] = "Disconnected" if session[:s3connection] == nil
-      session[:s3bucket] = "No Bucket Selected" if session[:s3bucket] == nil
+      session[:s3bucket] = "No Bucket Selected"
 
       #pull the s3 object storage credentials for the html table
       @currentS3address = session[:s3address]
       @currentS3username = session[:s3username]
       @currentS3password = session[:s3password]
+      @ssl_setting = session[:use_ssl]
 
       flash.now[:danger] =  "Error Loading Application: #{error}."
     end
@@ -38,12 +42,14 @@ class MainController < ApplicationController
       session[:s3address] = params[:selection][:s3address]
       session[:s3username] = params[:selection][:s3username]
       session[:s3password] = params[:selection][:s3password]
+      session[:use_ssl] = params[:selection][:use_ssl]
       session[:s3bucket] = "No Bucket Selected"
 
       #pull the s3 object storage credentials for the html table
       @currentS3address = session[:s3address]
       @currentS3username = session[:s3username]
       @currentS3password = session[:s3password]
+      @ssl_setting = session[:use_ssl]
 
       flash.now[:success] = "Success: S3 Credentials have been set."
     rescue Exception => error
@@ -51,6 +57,8 @@ class MainController < ApplicationController
       @currentS3address = session[:s3address]
       @currentS3username = session[:s3username]
       @currentS3password = session[:s3password]
+      @ssl_setting = session[:use_ssl]
+      session[:s3bucket] = "No Bucket Selected"
 
       flash.now[:danger] =  "Error Setting S3 Credentials: #{error}."
     end
@@ -65,12 +73,13 @@ class MainController < ApplicationController
       session[:s3username] = "Not Set (User Wiped)"
       session[:s3password] = "Not Set (User Wiped)"
       session[:s3connection] = "Disconnected (User Wiped)"
-      session[:s3bucket] == "No Bucket Selected"
+      session[:s3bucket] = "No Bucket Selected"
 
       #pull the s3 object storage credentials for the html table
       @currentS3address = session[:s3address]
       @currentS3username = session[:s3username]
       @currentS3password = session[:s3password]
+      @ssl_setting = session[:use_ssl]
 
       flash.now[:success] = "Success: S3 Credentials have wiped."
     rescue Exception => error
@@ -78,7 +87,8 @@ class MainController < ApplicationController
       @currentS3address = session[:s3address]
       @currentS3username = session[:s3username]
       @currentS3password = session[:s3password]
-      session[:s3bucket] == "No Bucket Selected"
+      @ssl_setting = session[:use_ssl]
+      session[:s3bucket] = "No Bucket Selected"
 
       flash.now[:danger] =  "Error Wiping S3 Credentials: #{error}."
     end
