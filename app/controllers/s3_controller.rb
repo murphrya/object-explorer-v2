@@ -145,7 +145,7 @@ class S3Controller < ApplicationController
     end
   end
 
-
+ #renders page after user selects a bucket to view
  def viewBucketObjects
    begin
      session[:s3bucket] = params["selection"]["bucket"]
@@ -173,34 +173,48 @@ class S3Controller < ApplicationController
    end
  end
 
-
+ #Helper method
+ #returns an array of objects
  def getObjectsList
    begin
+     #get a handle on the user selected bucket
      s3 = createS3Connection
      bucket = s3.buckets[session[:s3bucket]]
 
+     #pull down a list of the object names only
      objects_array = []
-     final_objects_array = []
+    # final_objects_array = []
+
+     #bucket.objects.each do |obj|
+      # objects_array.push(obj.key)
+     #end
+
      bucket.objects.each do |obj|
-       objects_array.push(obj.key)
+       objects_array.push({:name => obj.key, :size => (obj.content_length / 1024.0).round(2), :type => obj.content_type, :last_mod => obj.last_modified})
      end
 
-     if !objects_array.empty?
-       objects_array.each do |obj_name|
-         final_objects_array.push({:name => obj_name, :size => '', :type => ''})
-       end
-     else
-        final_objects_array = [{:name => '', :size => '', :type => ''}]
-     end
-     return final_objects_array
+     objects_array = createEmptyObjectsArray if objects_array.empty?
+
+     return objects_array
+     #if !objects_array.empty?
+      # objects_array.each do |obj_name|
+      #   final_objects_array.push({:name => obj_name, :size => '', :type => ''})
+    #   end
+    # else
+    #    final_objects_array = [{:name => '', :size => '', :type => ''}]
+    # end
+    # return final_objects_array
    rescue Exception => error
-     return createEmptyObjectsArray
+    # return createEmptyObjectsArray
+    return createEmptyObjectsArray
      flash.now[:danger] =  "Error Creating S3 Buckets List: #{error}."
    end
  end
 
 
+def deleteBucket
 
+end
 
 
 

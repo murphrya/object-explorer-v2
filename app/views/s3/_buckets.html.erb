@@ -20,6 +20,6 @@
   <%= f.submit 'View Objects', :class => 'btn btn-primary btn-sm', remote: true %>
   <%= link_to 'Refresh', { :controller => "s3", :action => "testS3Connection"}, :class=>'btn btn-default btn-sm', :remote => true %>
   <button type="button" class="btn btn-primary btn-sm">Create New</button>
-  <button type="button" class="btn btn-danger btn-sm">Delete</button>
+  <%= f.submit 'Delete', formaction: s3_deleteBucket_path, :class => 'btn btn-primary btn-sm', remote: true %>
   <% end %>
 </div>

@@ -4,8 +4,9 @@
     <tr>
       <th></th>
       <th>Name</th>
-      <th>Size</th>
+      <th>Size (KB)</th>
       <th>Type</th>
+      <th>Last Modified</th>
     </tr>
     <% @objects_array.each do |objects_hash| %>
       <tr>
@@ -13,6 +14,7 @@
         <td><%= objects_hash[:name] %></td>
         <td><%= objects_hash[:size] %></td>
         <td><%= objects_hash[:type] %></td>
+        <td><%= objects_hash[:last_mod] %></td>
       </tr>
     <% end %>
     </table>
