@@ -1,0 +1,23 @@
+<div class="modal fade" id="create-bucket-modal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+                 <h3 class='modal-title text-primary'>Create Bucket</h3>
+            </div>
+            <div class="modal-body">
+                <%= form_for :selection, :url => {:controller => "s3", :action => "createS3Bucket"}, :remote => true  do |f| %>
+                <div class="form-group">
+                    <%= f.label :bucket, 'New Bucket Name:' %>
+                    <%= f.text_field(:bucket, size:'20x1', class: 'form-control', :placeholder => "Bucket Name", required:true) %>
+                </div>
+                <br>
+                <%= f.submit 'Create Bucket', :class => 'btn btn-primary btn-sm' %>
+                <% end %>
+            </div>
+            <div class="modal-footer">
+                <a href="" class="btn btn-default" data-dismiss="modal">Cancel</a>
+            </div>
+        </div>
+    </div>
+</div>

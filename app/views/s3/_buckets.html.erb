@@ -17,9 +17,19 @@
       </tr>
     <% end %>
   </table>
-  <%= f.submit 'View Objects', :class => 'btn btn-primary btn-sm', remote: true %>
   <%= link_to 'Refresh', { :controller => "s3", :action => "testS3Connection"}, :class=>'btn btn-default btn-sm', :remote => true %>
-  <button type="button" class="btn btn-primary btn-sm">Create New</button>
-  <%= f.submit 'Delete', formaction: s3_deleteBucket_path, :class => 'btn btn-primary btn-sm', remote: true %>
+  <%= f.submit 'View Objects', :class => 'btn btn-primary btn-sm', remote: true %>
+
+  <!-- Single button -->
+  <div class="btn-group">
+    <button type="button" class="btn btn-primary dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">New<span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li><a href='' data-toggle="modal" data-target="#create-bucket-modal">Custom Name</a></li>
+      <li><%= link_to "Auto Generated Name", :remote => true,  :controller => "s3", :action => "createRandomS3Bucket"  %></li>
+    </ul>
+  </div>
+
+  <%= f.submit 'Delete', formaction: s3_deleteBucket_path, :class => 'btn btn-warning btn-sm', remote: true %>
+  <%= f.submit 'Force Delete', formaction: s3_forceDeleteBucket_path, :class => 'btn btn-danger btn-sm', remote: true %>
   <% end %>
 </div>

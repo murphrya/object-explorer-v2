@@ -19,6 +19,15 @@ Rails.application.routes.draw do
   post 's3/testS3Connection'
   get 's3/viewBucketObjects'
   post 's3/viewBucketObjects'
+  get 's3/deleteBucket'
+  post 's3/deleteBucket'
+  get 's3/forceDeleteBucket'
+  post 's3/forceDeleteBucket'
+  get 's3/createS3Bucket'
+  post 's3/createS3Bucket'
+  get 's3/createRandomS3Bucket'
+  post 's3/createRandomS3Bucket'
+
 
   #swift page routes
   get 'swift/index'
