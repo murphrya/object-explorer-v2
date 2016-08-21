@@ -7,9 +7,9 @@
       <th>Connection Status</th>
     </tr>
     <tr>
-      <td><%= @currentS3address %></td>
-      <td><%= @currentS3username %></td>
-      <td><%= @currentS3connection %></td>
+      <td><%= session[:s3address] %></td>
+      <td><%= session[:s3username] %></td>
+      <td><%= session[:s3connection] %></td>
     </tr>
   </table>
   <%= link_to 'Refresh', { :controller => "s3", :action => "testS3Connection"}, :class=>'btn btn-default btn-sm', :remote => true %>
