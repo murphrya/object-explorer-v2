@@ -120,8 +120,23 @@ class S3Controller < ApplicationController
       s3 = createS3Connection
       list = s3.buckets.collect(&:name)
       buckets_array = []
+
+      #for each S3 bucket collect statistics
       list.each do |bucket_name|
-        buckets_array.push({:name => bucket_name, :objects => 'TBD', :size => 'TBD'})
+        obj_count = 0
+        total_size = 0
+        bucket = s3.buckets[bucket_name]
+
+        #for each object in the bucket
+        bucket.objects.each do |obj|
+          obj_count +=1
+          total_size += obj.content_length
+        end
+
+        #convert total_size from bytes to MB
+        total_size = (total_size / 1024.0).round(2)
+        #build the array of buckets
+        buckets_array.push({:name => bucket_name, :objects => obj_count, :size => total_size})
       end
       return buckets_array
     rescue Exception => error
@@ -167,7 +182,7 @@ class S3Controller < ApplicationController
      objects_array = []
      final_objects_array = []
      bucket.objects.each do |obj|
-       objects_array.push(objects_array.push(obj.key))
+       objects_array.push(obj.key)
      end
 
      if !objects_array.empty?
