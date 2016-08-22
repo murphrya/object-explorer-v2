@@ -136,7 +136,8 @@ class S3Controller < ApplicationController
  #renders page after user selects a bucket to view
  def viewBucketObjects
    begin
-     session[:s3bucket] = params["selection"]["bucket"]
+     puts params
+     session[:s3bucket] = params[:selection][:bucket]
 
      #Get the list of buckets if a connection can be Established
      #Return an empty list of buckets if a connection cant be established
@@ -197,7 +198,7 @@ class S3Controller < ApplicationController
 def deleteBucket
   begin
     #get a handle on the user selected bucket
-    target_bucket = params["selection"]["bucket"]
+    target_bucket = params[:selection][:bucket]
     s3 = createS3Connection
     bucket = s3.buckets[target_bucket]
 
@@ -231,7 +232,7 @@ end
 def forceDeleteBucket
   begin
     #get a handle on the user selected bucket
-    target_bucket = params["selection"]["bucket"]
+    target_bucket = session[:s3bucket]
     s3 = createS3Connection
     bucket = s3.buckets[target_bucket]
 
@@ -408,8 +409,6 @@ def uploadS3Object
   s3 = createS3Connection
   bucket = s3.buckets[session[:s3bucket]]
   obj = bucket.objects[object_name].write(open(selected_file.path))
-  puts "Success!"
-
 
   #Get the list of buckets if a connection can be Established
   #Return an empty list of buckets if a connection cant be established
@@ -420,7 +419,6 @@ def uploadS3Object
   #Returns an empty list of objects if the selected bucket value is None
   @objects_array = createEmptyObjectsArray if session[:s3bucket] == "No Bucket Selected"
   @objects_array = getObjectsList if session[:s3bucket] != "No Bucket Selected"
-  flash[:info] = "Success: " + obj.key + " was uploaded."
   redirect_to s3_index_path
   rescue Exception => error
   #Get the list of buckets if a connection can be Established
