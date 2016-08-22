@@ -14,7 +14,6 @@
       <ul class="nav navbar-nav">
         <li class="active"><%= link_to 'Accounts', main_index_path %></li>
         <li><%= link_to 'S3 Client', s3_index_path %></li>
-        <!--<li><%= link_to 'Swift', swift_index_path %></li> -->
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
@@ -23,7 +22,6 @@
             <li><%= link_to 'Software Levels', main_softwareLevels_path %></li>
             <li role="separator" class="divider"></li>
             <li><%= link_to "Wipe S3 Credentials", :remote => true,  :controller => "main", :action => "wipeS3Credentials"  %></li>
-            <!--<li><a href="#">Wipe Swift Credentials</a></li> -->
           </ul>
         </li>
       </ul>

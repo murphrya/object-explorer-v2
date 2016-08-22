@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  #main application root route
   root 'main#index'
 
   #main page routes
@@ -27,10 +25,12 @@ Rails.application.routes.draw do
   post 's3/createS3Bucket'
   get 's3/createRandomS3Bucket'
   post 's3/createRandomS3Bucket'
+  get 's3/downloadS3Object'
+  post 's3/downloadS3Object'
+  post 's3/deleteS3Object'
+  post 's3/uploadS3Object'
 
 
-  #swift page routes
-  get 'swift/index'
 
 
 
