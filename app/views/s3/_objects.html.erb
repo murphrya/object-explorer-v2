@@ -18,7 +18,7 @@
             <td><%= objects_hash[:type] %></td>
             <td><%= objects_hash[:last_mod] %></td>
             <% if @objects_array[0][:name] != ''%>
-              <td><%= link_to "Delete Object", {:controller => "s3", :action => "deleteS3Object"}, :class => 'btn btn-danger btn-xs', :object => {:bucket => objects_hash[:name]}, remote: true %></td>
+              <td><%= link_to "Delete Object", {:controller => "s3", :action => "deleteS3Object", :object => {:name => objects_hash[:name]}}, :class => 'btn btn-danger btn-xs', remote: true %></td>
             <% end %>
             <% if @objects_array[0][:name] == ''%>
               <td>  </td>
