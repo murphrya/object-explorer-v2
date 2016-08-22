@@ -24,7 +24,7 @@ class MainController < ApplicationController
       session[:s3password] = params[:selection][:s3password]
       session[:use_ssl] = params[:selection][:use_ssl]
       session[:s3bucket] = "No Bucket Selected"
-      flash.now[:success] = "Success: S3 Credentials have been set."
+      flash.now[:info] = "Success: S3 Credentials have been set."
     rescue Exception => error
       session[:s3bucket] = "No Bucket Selected"
       flash.now[:danger] =  "Error Setting S3 Credentials: #{error}."
@@ -40,7 +40,7 @@ class MainController < ApplicationController
       session[:s3password] = "Not Set (User Wiped)"
       session[:s3connection] = "Disconnected (User Wiped)"
       session[:s3bucket] = "No Bucket Selected"
-      flash.now[:success] = "Success: S3 Credentials have wiped."
+      flash.now[:info] = "Success: S3 Credentials have wiped."
     rescue Exception => error
       session[:s3bucket] = "No Bucket Selected"
       flash.now[:danger] =  "Error Wiping S3 Credentials: #{error}."

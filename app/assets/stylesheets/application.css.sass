@@ -9,9 +9,15 @@
  * compiled file so the styles you add here take precedence over styles defined in any styles
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
- *
+ *= require nprogress
+ *= require nprogress-bootstrap
  *= require_tree .
  *= require_self
  */
 @import "bootstrap-sprockets"
 @import "bootstrap"
+$nprogress-height: 52px
+$nprogress-zindex: 10100
+
+@import 'nprogress'
+@import 'nprogress-bootstrap'

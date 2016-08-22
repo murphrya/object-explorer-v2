@@ -41,7 +41,7 @@ class S3Controller < ApplicationController
       #Returns an empty list of objects if the selected bucket value is None
       @objects_array = createEmptyObjectsArray if session[:s3bucket] == "No Bucket Selected"
       @objects_array = getObjectsList if session[:s3bucket] != "No Bucket Selected"
-      flash.now[:success] = "Success: Enpoint connection refreshed."
+      flash.now[:info] = "Success: Enpoint connection refreshed."
     rescue Exception => error
       session[:s3connection] = "Disconnected (Error)"
       @buckets_array = createEmptyBucketsArray if session[:s3connection] != "Established"
@@ -147,7 +147,7 @@ class S3Controller < ApplicationController
      #Returns an empty list of objects if the selected bucket value is None
      @objects_array = createEmptyObjectsArray if session[:s3bucket] == "No Bucket Selected"
      @objects_array = getObjectsList if session[:s3bucket] != "No Bucket Selected"
-     flash.now[:success] = "Success: Object list downloaded from the object endpoint."
+     flash.now[:info] = "Success: Object list downloaded from the object endpoint."
    rescue Exception => error
      @buckets_array = createEmptyBucketsArray if session[:s3connection] != "Established"
      @objects_array = createEmptyObjectsArray if session[:s3bucket] == "No Bucket Selected"
@@ -205,7 +205,7 @@ def deleteBucket
     if bucket.empty?
         session[:s3bucket] = "No Bucket Selected" if session[:s3bucket] == target_bucket
         bucket.delete
-        flash.now[:success] = "Success: Bucket " + target_bucket + " was deleted."
+        flash.now[:info] = "Success: Bucket " + target_bucket + " was deleted."
     else
         flash.now[:danger] =  "Error deleting bucket " + target_bucket + ": Bucket not empty."
     end
@@ -255,7 +255,7 @@ def forceDeleteBucket
     #Returns an empty list of objects if the selected bucket value is None
     @objects_array = createEmptyObjectsArray if session[:s3bucket] == "No Bucket Selected"
     @objects_array = getObjectsList if session[:s3bucket] != "No Bucket Selected"
-    flash.now[:success] = "Success: Bucket " + target_bucket + " was deleted."
+    flash.now[:info] = "Success: Bucket " + target_bucket + " was deleted."
   rescue Exception => error
     @currentS3connection = session[:s3connection]
     @currentS3address = session[:s3address]
@@ -287,7 +287,7 @@ def createS3Bucket
     #Returns an empty list of objects if the selected bucket value is None
     @objects_array = createEmptyObjectsArray if session[:s3bucket] == "No Bucket Selected"
     @objects_array = getObjectsList if session[:s3bucket] != "No Bucket Selected"
-    flash.now[:success] = "Success: Bucket " + name + " was created"
+    flash.now[:info] = "Success: Bucket " + name + " was created"
   rescue Exception => error
     @buckets_array = createEmptyBucketsArray if session[:s3connection] != "Established"
     @objects_array = createEmptyObjectsArray if session[:s3bucket] == "No Bucket Selected"
@@ -316,7 +316,7 @@ def createRandomS3Bucket
     #Returns an empty list of objects if the selected bucket value is None
     @objects_array = createEmptyObjectsArray if session[:s3bucket] == "No Bucket Selected"
     @objects_array = getObjectsList if session[:s3bucket] != "No Bucket Selected"
-    flash.now[:success] = "Success: Bucket " + name + " was created"
+    flash.now[:info] = "Success: Bucket " + name + " was created"
   rescue Exception => error
     #Get the list of buckets if a connection can be Established
     #Return an empty list of buckets if a connection cant be established
@@ -382,7 +382,7 @@ def deleteS3Object
     @objects_array = createEmptyObjectsArray if session[:s3bucket] == "No Bucket Selected"
     @objects_array = getObjectsList if session[:s3bucket] != "No Bucket Selected"
 
-    flash.now[:success] = "Success: Object " + name + " was deleted."
+    flash.now[:info] = "Success: Object " + name + " was deleted."
   rescue Exception => error
     #Get the list of buckets if a connection can be Established
     #Return an empty list of buckets if a connection cant be established
@@ -420,8 +420,8 @@ def uploadS3Object
   #Returns an empty list of objects if the selected bucket value is None
   @objects_array = createEmptyObjectsArray if session[:s3bucket] == "No Bucket Selected"
   @objects_array = getObjectsList if session[:s3bucket] != "No Bucket Selected"
+  flash[:info] = "Success: " + obj.key + " was uploaded."
   redirect_to s3_index_path
-  flash.now[:success] = "Success: "
   rescue Exception => error
   #Get the list of buckets if a connection can be Established
   #Return an empty list of buckets if a connection cant be established
