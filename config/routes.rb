@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   post 's3/createRandomS3Bucket'
   get 's3/downloadS3Object'
   post 's3/downloadS3Object'
+  get 's3/deleteS3Object'
   post 's3/deleteS3Object'
   post 's3/uploadS3Object'
 
