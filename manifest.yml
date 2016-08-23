@@ -1,7 +1,7 @@
 ---
   memory: 512M
-  disk_quota: 1048M
+  disk_quota: 512M
   path: .
   random-route: true
-  instances: 1
+  instances: 4
   command: bundle exec rails s -p $PORT -e development
