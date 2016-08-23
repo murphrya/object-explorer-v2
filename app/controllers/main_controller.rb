@@ -11,7 +11,7 @@ class MainController < ApplicationController
       session[:s3connection] = "Disconnected" if session[:s3connection] == nil
       session[:s3bucket] = "No Bucket Selected"
     rescue Exception => error
-      flash.now[:danger] =  "Error Loading Application: #{error}."
+      flash.now[:danger] =  "<strong>Error!</strong>".html_safe + " Problem loading application: #{error}."
     end
   end
 
@@ -24,10 +24,10 @@ class MainController < ApplicationController
       session[:s3password] = params[:selection][:s3password]
       session[:use_ssl] = params[:selection][:use_ssl]
       session[:s3bucket] = "No Bucket Selected"
-      flash.now[:info] = "Success: S3 Credentials have been set."
+      flash.now[:info] = "<strong>Success!</strong>".html_safe + " S3 credentials have been set."
     rescue Exception => error
       session[:s3bucket] = "No Bucket Selected"
-      flash.now[:danger] =  "Error Setting S3 Credentials: #{error}."
+      flash.now[:danger] =  "<strong>Error!</strong>".html_safe + " Problem setting S3 credentials: #{error}."
     end
   end
 
@@ -40,10 +40,10 @@ class MainController < ApplicationController
       session[:s3password] = "Not Set (User Wiped)"
       session[:s3connection] = "Disconnected (User Wiped)"
       session[:s3bucket] = "No Bucket Selected"
-      flash.now[:info] = "Success: S3 Credentials have wiped."
+      flash.now[:info] = "<strong>Success!</strong>".html_safe + " S3 credentials have wiped."
     rescue Exception => error
       session[:s3bucket] = "No Bucket Selected"
-      flash.now[:danger] =  "Error Wiping S3 Credentials: #{error}."
+      flash.now[:danger] =  "<strong>Error!</strong>".html_safe + "Problem wiping S3 credentials: #{error}."
     end
   end
 
@@ -58,7 +58,7 @@ class MainController < ApplicationController
       @bootstrap_version = Gem.latest_spec_for('bootstrap-sass').version.to_s
       @aws_version = Gem.latest_spec_for('aws-sdk-v1').version.to_s
     rescue Exception => error
-      flash.now[:danger] =  "Error pulling server configuration: #{error}."
+      flash.now[:danger] =  "<strong>Error!</strong>".html_safe + " Problem pulling server configuration: #{error}."
     end
   end
 
