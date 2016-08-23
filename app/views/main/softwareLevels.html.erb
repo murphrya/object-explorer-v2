@@ -5,8 +5,11 @@
 
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
+    <br>
   <h3 class="text-primary"><%= image_tag("server_logo.png", width: '35', height: '35', alt: 'S3 Login', class: "") %> Object Explorer Server <small> - Running Configuration</small></h3>
-  <br>
+  <div class="alert alert-info">
+    <strong>Source Code and Directions: </strong> <a href="https://github.com/ryn1727/Object-Explorer-v2" target="blank">https://github.com/ryn1727/Object-Explorer-v2</a>
+  </div>
   <span><strong>Server Instance: </strong><span class="badge"> <%= @server_instance %></span></a>
   <span><strong>Server Address: </strong><span class="badge"> <%= @server_address %></span></a>
   <span><strong>Server Platform: </strong><span class="badge"> <%= @os_type %></span></a>
@@ -31,6 +34,12 @@
         <td><%= @rails_version %></td>
         <td>4.2.7.1</td>
         <td>A web application framework written in Ruby. Provides structures for database, web service, and web pages.</td>
+      </tr>
+      <tr>
+        <td>Node.JS</td>
+        <td><%= @node_js_version %></td>
+        <td>v4.5.0</td>
+        <td>A JavaScript runtime built on Chrome's V8 JavaScript engine. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient. </td>
       </tr>
       <tr>
         <td>Bootstrap</td>

@@ -57,6 +57,7 @@ class MainController < ApplicationController
       @server_address = Socket.ip_address_list.find { |ai| ai.ipv4? && !ai.ipv4_loopback? }.ip_address
       @bootstrap_version = Gem.latest_spec_for('bootstrap-sass').version.to_s
       @aws_version = Gem.latest_spec_for('aws-sdk-v1').version.to_s
+      @node_js_version = `node -v`.gsub('\n','')
     rescue Exception => error
       flash.now[:danger] =  "<strong>Error!</strong>".html_safe + " Problem pulling server configuration: #{error}."
     end

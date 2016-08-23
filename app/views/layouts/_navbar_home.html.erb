@@ -12,7 +12,7 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><%= link_to 'Accounts', main_index_path %></li>
+        <li class="active"><%= link_to 'Account', main_index_path %></li>
         <li><%= link_to 'S3 Client', s3_index_path %></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -21,7 +21,6 @@
           <ul class="dropdown-menu">
             <li><%= link_to 'Software Levels', main_softwareLevels_path %></li>
             <li role="separator" class="divider"></li>
-            <li><%= link_to "Wipe S3 Credentials", :remote => true,  :controller => "main", :action => "wipeS3Credentials"  %></li>
           </ul>
         </li>
       </ul>
