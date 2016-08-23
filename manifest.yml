@@ -1,5 +1,7 @@
 ---
   memory: 512M
-  disk_quota: 2048M
-  buildpack: https://github.com/cloudfoundry/ruby-buildpack.git
+  disk_quota: 1048M
+  path: .
+  random-route: true
+  instances: 1
   command: bundle exec rails s -p $PORT -e development

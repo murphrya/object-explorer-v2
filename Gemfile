@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+ruby '2.2.5'
 gem 'rails', '4.2.7.1'
 gem 'sqlite3'
 gem 'sass-rails', '~> 5.0'
@@ -13,8 +13,8 @@ gem 'bootstrap-sass', '~> 3.3.7'
 gem 'autoprefixer-rails'
 gem 'remotipart'
 gem 'aws-sdk-v1'
-gem 'puma'
 gem 'nprogress-rails'
+gem 'rails_12factor'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
