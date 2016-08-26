@@ -343,17 +343,18 @@ def downloadS3Object
 
   bucket = s3.buckets[session[:s3bucket]]
   object = bucket.objects[name]
+  send_data object.read, :filename => object.key, :type => object.content_type, :disposition => "attachment"
 
   #write file to disk
-  File.open(object.key, 'wb') do |file|
-    object.read do |chunk|
-      file.write(chunk)
-    end
-  end
+  #File.open(object.key, 'wb') do |file|
+   # object.read do |chunk|
+  #    file.write(chunk)
+  #  end
+ # end
 
   #sendS3Object(object.key,object.content_type)
-  send_file(object.key, :filename => object.key, :type => object.content_type, :disposition => "attachment")
-  File.delete(object.key)
+  #send_file(object.key, :filename => object.key, :type => object.content_type, :disposition => "attachment")
+  #File.delete(object.key)
 
   rescue Exception => error
     flash.now[:danger] =  "<strong>Error!</strong>".html_safe + " #{error}."
