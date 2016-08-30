@@ -3,5 +3,6 @@
   disk_quota: 512M
   path: .
   random-route: true
-  instances: 4
+  instances: 2
+  buildpack: https://github.com/cloudfoundry/ruby-buildpack.git
   command: bundle exec rails s -p $PORT -e development
