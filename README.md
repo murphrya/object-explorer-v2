@@ -1,8 +1,8 @@
 ##Overview
 Object Explorer is a Ruby on Rails web application that can connect to and interact with S3 compatible object storage. Operations include creating/deleting buckets and uploading, downloading, and deleting objects. The application is currently a beta release, running in Rails development mode. I would recommend running this application or container on host that has 2-3GB of RAM available.
 
-![img1](https://raw.githubusercontent.com/ryn1727/Object-Explorer-v2/master/github_img1.PNG)
-![img1](https://raw.githubusercontent.com/ryn1727/Object-Explorer-v2/master/github_img2.PNG)
+![img1](https://raw.githubusercontent.com/murphrya/object-explorer-v2/master/github_img1.PNG)
+![img1](https://raw.githubusercontent.com/murphrya/object-explorer-v2/master/github_img2.PNG)
 
 
 ##Run Locally
