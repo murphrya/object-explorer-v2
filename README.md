@@ -9,9 +9,9 @@ Object Explorer is a Ruby on Rails web application that can connect to and inter
 
 1. Install Ruby version 2.2.5 or 2.3.1.
 
-2. Perform a git clone of the repository: ```git clone https://github.com/ryn1727/Object-Explorer-v2.git```
+2. Perform a git clone of the repository: ```git clone https://github.com/murphrya/object-explorer-v2.git```
 
-3. Change into the Object Explorer directory: ```cd Object-Explorer-v2/```
+3. Change into the Object Explorer directory: ```cd object-explorer-v2/```
 
 4. Perform a bundle install: ```bundle install```
 
@@ -23,7 +23,7 @@ Object Explorer is a Ruby on Rails web application that can connect to and inter
 ##Docker Container
 For Docker/AWS users I have a container available. The container can be downloaded from my docker hub account.
 
-1. Pull down and run the container: ```docker run -d -p 3000:3000 ryn1727/object-explorer-v2```
+1. Pull down and run the container: ```docker run -d -p 3000:3000 murphrya/object-explorer-v2```
 
 2. Get container ID: ```docker ps -l```
 
